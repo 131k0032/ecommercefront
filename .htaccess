@@ -1,0 +1,10 @@
+#Bloquear acceso a directorios
+
+Options All -Indexes
+
+# Urls amigables
+
+RewriteEngine On
+
+#La url va a recibir a a z miniscula  mayuscula y de 0 a 9 y tambien diagonales todo eso reemplazalo con la variable ruta
+RewriteRule ^([-a-zA-Z0-9ñÑ/]+)$ index.php?ruta=$1

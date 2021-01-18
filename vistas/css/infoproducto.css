@@ -1,0 +1,117 @@
+/*=============================================
+INFOPRODUCTO
+=============================================*/
+/*Oculta las demas imagenes*/
+.infoproducto figure.visor img{
+	display: none;
+	cursor: crosshair;
+}
+
+/*Visualiza solo el primero o primer imagen*/
+.infoproducto figure.visor img:first-child{
+	display: block;
+}
+
+.flexslider{
+	cursor:pointer;
+}
+
+/*Coloca la lupa al costado derecho*/
+.lupa{
+	display: none;
+	position:absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+}
+
+.lupa img{
+	position: relative;
+	margin-top: -100%;
+	margin-left: -50%;
+	width: 160%;
+}
+
+.compartirRedes {
+	border:0px;
+	box-shadow:none;
+	margin: 0px;
+}
+
+.compartirRedes li p{
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	padding: 8px;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.btnFacebook{
+	background: #46639f;
+}
+
+.btnGoogle{
+	background: #d6513e;
+}
+
+
+
+/*=============================================
+ESCRITORIO GRANDE-RESPONSIVE PARA LG (1366 PX EN)
+=============================================*/
+/*Minimo 1200 max 1366*/
+@media (min-width: 1200px) {
+.videoPresentacion{
+	height: 415px;
+
+
+	}	
+}
+
+
+/*=============================================
+ESCRITORIO MEDIANO O TABLET HORIZONTAL-RESPONSIVE PARA MD (1024 PX)
+=============================================*/
+@media (max-width: 1199px) and (min-width: 992px) {
+.videoPresentacion{
+	height: 350px;
+	
+
+	}
+}
+
+/*=============================================
+ESCRITORIO PEQUEÑO O TABLET VERTICAL-RESPONSIVE PARA SM (768 PX)
+=============================================*/
+@media (max-width: 991px) and (min-width: 768px) {
+.videoPresentacion{
+	height: 300px;
+	
+
+	}
+}
+
+
+/*=============================================
+MOVIL-RESPONSIVE PARA XM (320 PX)
+=============================================*/
+@media (max-width: 767px) {
+.videoPrensetacion{
+	height: 200px;
+	
+	}
+
+.fondoBreadcrumb{
+	font-size: 12px;
+	}
+
+/*Todos los botones de esta clase*/
+.botonesCompra button{
+	/*5px en vertical y 0 horizontal*/
+		margin:5px 0;
+	}
+
+}

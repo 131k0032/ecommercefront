@@ -1,0 +1,272 @@
+/*=============================================
+TOP
+=============================================*/
+#top ul{
+	padding-top: 8px;
+}
+
+#top ul li{
+	display: inline;
+	line-height: 30px;
+	margin: 0px 5px;
+	color: white;
+}
+
+.social ul li a i{
+	font-size: 18px;
+	margin: 0 1px;
+}
+
+.registro ul{
+	text-align: right;
+	font-size: 12px;
+}
+
+/*=============================================
+HEADER
+=============================================*/
+header #logotipo{
+	padding:20px 60px;
+	padding-left: 60px;
+}
+
+header #btnCategorias{
+	margin: 20px 0;
+}
+
+header #btnCategorias p{
+	line-height: 40px;
+	margin-bottom: 0px;
+}
+
+header #btnCategorias p span{
+	cursor: pointer;
+}
+
+header #buscador{
+	padding:20px 0;
+}
+
+header #buscador input{
+	padding: 19px;
+	border-radius: 0px;
+}
+
+header #buscador button{
+	padding: 9px;
+	border: 1px solid silver;
+	border-radius: 0px;
+}
+
+header #carrito{
+	margin:20px 0;
+}
+
+header #carrito button{
+    padding: 9px 15px;
+	border: 1px solid silver;
+	border-radius: 0px;	
+}
+
+header #carrito p{
+    padding: 2px;
+	padding-left: 60px;
+	border: 1px solid #aaa;
+	font-size: 12px;
+}
+
+
+
+header #categorias{
+	display: none;
+	margin-top: -10px;
+	position: relative;
+	padding-bottom: 20px;
+}
+
+header #categorias h4{
+	margin-top: 20px;
+	margin-bottom: -10px;
+}
+
+header #categorias hr{
+	border: 1px solid rgba(255,255,255,.3)
+}
+
+/*=============================================
+VENTANAS MODALES
+=============================================*/
+.modalTitulo{
+	padding: 5px 0px;
+}
+
+.modalTitulo h3{
+ 	text-align: center;
+ 	margin-top: -5px;
+ 	padding: 15px 0px;
+ 	border-radius: 5px 5px 0px 0px;
+
+}
+
+.modalFormulario .close{
+	position: absolute;
+	right: 27px;
+	top: 15px;
+	color: white;
+}
+
+.modalFormulario .facebook, .modalFormulario .google{
+	cursor:pointer;
+}
+
+.modalFormulario .facebook p{
+	background: #46639f;
+}
+
+.modalFormulario .google p{
+	background: #d6513e;
+}
+.modalFormulario .facebook p, .modalFormulario .google p{
+	color:white;
+	text-align: center;
+	line-height: 40px;
+	padding: 8px;
+	font-size: 18px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+
+}
+
+.modalFormulario p i{
+	margin-left: -25px;
+	margin-right: 25px;
+	font-size: 25px;
+}
+
+
+.modalFormulario form{
+	padding: 20px;
+
+}
+
+.modalFormulario form hr{
+	border: 2px solid #eee;
+}
+
+.modalFormulario form input[type="text"], .modalFormulario form input[type="email"], .modalFormulario form input[type="password"]{
+	padding: 25px;
+}
+
+.modalFormulario form input[type="submit"]{
+	padding: 15px;
+}
+
+/*=============================================
+ESCRITORIO GRANDE-RESPONSIVE PARA LG (1366 PX EN)
+=============================================*/
+/*Minimo 1200 max 1366*/
+@media (min-width: 1200px) {
+	/*Header*/
+	header #logotipo{
+		padding:20px 60px;
+		padding-left: 0px;
+	}
+	/*Carrito*/
+	header #carrito{
+		padding-left: 100px;
+	}
+	/*Formulario*/
+	.modalFormulario .facebook p{
+		margin-right: -15px;
+	}
+	
+}
+
+
+/*=============================================
+ESCRITORIO MEDIANO O TABLET HORIZONTAL-RESPONSIVE PARA MD (1024 PX)
+=============================================*/
+@media (max-width: 1199px) and (min-width: 992px) {
+	/*Header*/
+	header #logotipo{
+		padding:25px 60px;
+		padding-left: 0px
+	}
+	/*Carrito*/
+	header #carrito{
+		padding-left: 70px;
+	}
+	/*Formulario*/
+	.modalFormulario .facebook p{
+		margin-right: -15px;
+	}
+}
+
+/*=============================================
+ESCRITORIO PEQUEÑO O TABLET VERTICAL-RESPONSIVE PARA SM (768 PX)
+=============================================*/
+@media (max-width: 991px) and (min-width: 768px) {
+	/*Header*/
+	header #logotipo{
+		padding:30px 0px;		
+  	}
+	/*Carrito*/
+	header #carrito{
+		padding-left: 55px;		
+	}
+
+	header #carrito p{
+		display: none;
+	}
+	/*Formulario*/
+	.modalFormulario .facebook p{
+		margin-right: -15px;
+	}
+
+
+}
+
+
+/*=============================================
+MOVIL-RESPONSIVE PARA XM (320 PX)
+=============================================*/
+
+@media (max-width: 767px) {
+	
+	/*Top*/
+	#top ul{
+		text-align: center;
+	}
+
+	#top #registro{
+		border-top: 1px solid #222;
+	}
+
+	/*Header*/
+	header #logotipo{
+		padding:20px;
+		padding-bottom:10px;
+	}
+
+	/*Quitando espaciados*/
+	header #btnCategorias{
+		margin-bottom: 0px;
+	}
+
+	header #categorias{
+		margin-top: 5px;
+	}
+
+	header #buscador{
+		margin-top: 5px;
+	}
+
+	/*Carrito*/
+	header #carrito{
+		margin:0px;
+	}
+	/*Formulario*/
+	.modalFormulario .google p{
+		margin-top: -15px;
+	}
+}
