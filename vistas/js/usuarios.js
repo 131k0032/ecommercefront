@@ -1,4 +1,59 @@
 /*===================================================
+=            FORMATEAR INPUTS                       =
+===================================================*/
+//Elimina los alerts de los inputs al hacer click en cualquiera de ellos
+$("input").focus(function(){
+	$(".alert").remove();
+})
+/*===================================================
+=            VALIDAR EMAIL REPETIDO                 =
+===================================================*/
+var validarEmailRepetido = false;//Incia con un email que no está en el sistema con false
+//Cuando el campo regEmail cambie
+$("#regEmail").change(function(){
+
+	// Tomamos el valor que Escriba  en el campo regEmail
+	var email = $("#regEmail").val();
+	var datos = new FormData();
+	datos.append("validarEmail",email);
+
+	$.ajax({
+		url:rutaOculta+"ajax/usuarios.ajax.php",
+		method:"POST",
+		data:datos,
+		cache:false,
+		contentType:false,
+		processData:false,
+		success:function(respuesta){
+			console.log("respuesta",respuesta);
+			if(respuesta=="false"){
+
+				$(".alert").remove();
+				validarEmailRepetido = false;//Mantiene en falso el email registrado o que no está en el sistema
+				
+				}else{
+
+					var modo = JSON.parse(respuesta).modo;//Como se registró el user
+					// console.log(modo);
+
+					if (modo=="directo") {
+						modo="ésta pagina";
+					}
+
+					$("#regEmail").parent().before('<div class="alert alert-warning"><strong>Uy </stron>Correo previamente registrado en '+modo+' pliz agrega otro </div>')
+					validarEmailRepetido = true; //Si el email está repetido se convierte en true y no deja pasar
+					console.log(validarEmailRepetido);
+
+
+			}
+		}
+	})
+
+})
+
+
+
+/*===================================================
 =            VALIDAR REGISTRO DE USUARIO            =
 ===================================================*/
 
@@ -32,6 +87,14 @@ function registroUsuario(){
 			if(!expresion.test(email)){
 				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>Uy </stron>Escriba bien el correo</div>')
 			    return false;
+			}
+
+			//Si validarEmailRepetido es falso
+			if(validarEmailRepetido){
+
+				$("#regEmail").parent().before('<div class="alert alert-danger"><strong>Uy </stron>Correo previamente registrado pliz agrega otro </div>')
+				return false;
+
 			}
 
 		}else{

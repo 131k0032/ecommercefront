@@ -30,7 +30,7 @@
 				   $url =Ruta::ctrRuta();
 
 				   $mail = new PHPMailer;
-
+				   $mail->CharSet = 'UTF-8';
 				   $mail->isMail();
 				   $mail->setFrom('masterchief22010@hotmail.com','La mera reata jeje'); //De donte
 				   $mail->addReplyTo('masterchief22010@hotmail.com','La mera reata jeje');
