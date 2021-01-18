@@ -1,6 +1,6 @@
 # Título del Proyecto
 
-_ASeuimiento del Curso Crea Sistemas Ecommer con php 7 con pagos Paypal y Payu_
+Seguimiento del curso Crea sistemas Ecommercce con php 7 con pagos Paypal y Payu
 
 ## Instalacion
 
