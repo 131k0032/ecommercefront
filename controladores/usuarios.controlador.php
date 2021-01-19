@@ -154,11 +154,105 @@
 			return $respuesta;
 		}
 
+		/*----------   INGRESO DE USUARIO  ----------*/
+		public function ctrIngresoUsuario(){
+
+			if (isset($_POST["ingEmail"])) {
+				if(preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z0-9]{2,4}$/', $_POST["ingEmail"]) && 
+				   preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){
+
+				   		$encriptar = crypt($_POST['ingPassword'], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+				   		$tabla="usuarios";
+				   		$item="email";
+				   		$valor=$_POST["ingEmail"];
+				   		$respuesta=ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+
+				   			// Comparamos el correo obtenido y el pass encriptado
+				   			if(isset($respuesta["email"])  && $respuesta["email"]==$_POST["ingEmail"]  && isset($respuesta["emailEncriptado"]) && $respuesta["password"]==$encriptar){
+				   			
+				   				//Si  no está verificado la cuenta
+				   				if( isset($respuesta["verificacion"]) && $respuesta["verificacion"]==1){
+				   					echo '<script>
+											swal({
+													title: "¡Error!",
+													text: "Error de acceso, favor de verificar su correo",
+													type: "error",
+													confirmButtonText: "Cerrar",
+													confirmOnClose: "false"
+												},
+
+												function(isConfirm){
+													if(isConfirm){
+														history.back();
+													}
+												});
+
+									    </script>';
+				   				}else{
+				   					// Si está verificado la cuenta
+				   					$_SESSION["validarSesion"]="ok";
+				   					$_SESSION["id"]=$respuesta["id"];
+				   					$_SESSION["nombre"]=$respuesta["nombre"];
+				   					$_SESSION["foto"]=$respuesta["foto"];
+				   					$_SESSION["email"]=$respuesta["email"];
+				   					$_SESSION["password"]=$respuesta["password"];
+				   					$_SESSION["modo"]=$respuesta["modo"];
+
+				   					// Toma la ruta actual o mandalo a la ruta actual (variable en archivo usuarios.js)
+				   					echo '<script>
+											window.location =localStorage.getItem("rutaActual");
+									    </script>';
+				   				}
+
+				   			}else{
+
+				   					// Si no encuentran coincidencias en la bd
+				   					echo '<script>
+											swal({
+													title: "¡Error!",
+													text: "Usuario o contraseña incorrectos",
+													type: "error",
+													confirmButtonText: "Cerrar",
+													confirmOnClose: "false"
+												},
+
+												function(isConfirm){
+													if(isConfirm){
+														window.location =localStorage.getItem("rutaActual");
+													}
+												});
+
+									    </script>';
+				   						
+				   			}
+
+				   	// Si no cumple con la expresion regular
+					}else{
+						echo '<script>
+									swal({
+											title: "¡Error!",
+											text: "Errir de acceso, Caracteres especiales no permitidos",
+											type: "error",
+											confirmButtonText: "Cerrar",
+											confirmOnClose: "false"
+										},
+
+										function(isConfirm){
+											if(isConfirm){
+												history.back();
+											}
+										});
+
+							    </script>';
+
+			}
+		
+		}
 
 
     }
 	
-
+ }
 
 
  ?>

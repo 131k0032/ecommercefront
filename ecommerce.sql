@@ -744,7 +744,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `password`, `email`, `modo`, `foto`, `verificacion`, `emailEncriptado`, `fecha`) VALUES
-(1, 'Bernabe cituk caamal', '$2a$07$asxx54ahjppf45sd87a5au6wgFnPqrMnv21c9niEXfueNE0SmpbdW', 'mitnick@gmail.com', 'directo', '', 0, 'ea7b1d3a66dd28550e03a47022d963f5', '2021-01-14 05:48:49');
+(1, 'Bernabe cituk caamal', '$2a$07$asxx54ahjppf45sd87a5au6wgFnPqrMnv21c9niEXfueNE0SmpbdW', 'mitnick117@gmail.com', 'directo', '', 0, 'ea7b1d3a66dd28550e03a47022d963f5', '2021-01-14 05:48:49');
 
 --
 -- Índices para tablas volcadas

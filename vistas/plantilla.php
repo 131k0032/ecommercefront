@@ -129,7 +129,7 @@ if(isset($_GET["ruta"])){//Ruta viene de htaccess
 	    //var_dump($ruta);
 	}else if($infoProducto != null){
 		include "modulos/infoproducto.php";
-	}else if($rutas[0]=="buscador" || $rutas[0]=="verificar"){
+	}else if($rutas[0]=="buscador" || $rutas[0]=="verificar" || $rutas[0]=="salir"){
 		include "modulos/".$rutas[0].".php";
 	}else{
 		//var_dump($ruta);

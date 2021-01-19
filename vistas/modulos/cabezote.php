@@ -37,9 +37,35 @@ TOP
 			=======================-->
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">
 				<ul>
-					<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
-					<li>|</li>
-					<li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
+					<?php 
+
+						if(isset($_SESSION["validarSesion"])){
+							if($_SESSION["validarSesion"]=="ok"){
+								if ($_SESSION["modo"]=="directo"){
+									if ($_SESSION["foto"]!="") {
+									 echo '<li>
+									 		<img class="img-circle" src="'.$url.$_SESSION["foto"].'" width="10%">
+									 	  </li>';
+									}else{
+										echo '<li>
+									 		<img class="img-circle" src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" width="10%">
+									 	  </li>';
+									}
+									echo '<li>|</li>
+										  <li><a href="'.$url.'perfil">Ver perfil</a></li>
+										  <li>|</li>
+										  <li><a href="'.$url.'salir">Ver salir</a></li>';
+								}
+							}
+						}else{
+
+							echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
+								<li>|</li>
+								<li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>';
+						}
+					
+					 ?>
+					
 				</ul>
 			</div>							
 		</div>
@@ -220,6 +246,69 @@ HEADER
 	      </div>
 	      <div class="modal-footer">
 	        ¿Ya tienes una cuenta? | <strong><a href="#modalIngreso" data-dismiss="modal" data-toggle="modal">Ingresar</a></strong>
+	      </div>
+    </div>
+</div>
+
+
+
+<!--============================================
+=            VENTANA MODAL INGRESO             =
+=============================================-->
+
+<!-- Modal -->
+<div id="modalIngreso" class="modal fade modalFormulario" role="dialog">
+    <!-- Modal content-->
+    <div class="modal-content modal-dialog">
+      
+    	  <div class="modal-body modalTitulo">
+	      	<h3 class="backColor">Ingresar</h3>
+	      	 <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      		<!-- Ingreso Facebook -->
+	      		<div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro">
+	      			<p>
+	      				<i class="fa fa-facebook"></i>
+	      				Ingreso con Facebook
+	      			</p>
+	      		</div>
+	      		<!-- Ingreso Google -->
+	      		<div class="col-sm-6 col-xs-12 google" id="btnGoogleRegistro">
+	      			<p>
+	      				<i class="fa fa-google"></i>
+	      				Ingreso con Google
+	      			</p>
+	      		</div>
+	      		<!-- Formulario directo -->
+	      		<form method="POST">
+	      			<hr>
+	      			<div class="form-group">
+	      				<div class="input-group">
+	      					<span class="input-group-addon">
+	      						<i class="glyphicon glyphicon-envelope"></i>
+	      					</span>
+	      					<input type="email" class="form-control" id="ingEmail" name="ingEmail" placeholder="Correo electronico" required>
+	      				</div>
+	      			</div>
+
+	      			<div class="form-group">
+	      				<div class="input-group">
+	      					<span class="input-group-addon">
+	      						<i class="glyphicon glyphicon-lock"></i>
+	      					</span>
+	      					<input type="password" class="form-control" id="ingPassword" name="ingPassword" placeholder="Contraseña" required>
+	      				</div>
+	      			</div>
+	      			<?php 
+	      				$ingreso = new ControladorUsuarios();
+	      				$ingreso->ctrIngresoUsuario();
+	      			 ?>
+	      			<!-- Boton enviar -->
+	      			<input type="submit" class="btn btn-default backColor btn-block btnIngreso" value="Ingresar">
+
+	      		</form>
+	      </div>
+	      <div class="modal-footer">
+	        ¿No tienes una cuenta? | <strong><a href="#modalRegistro" data-dismiss="modal" data-toggle="modal">Registrarse</a></strong>
 	      </div>
     </div>
 </div>
