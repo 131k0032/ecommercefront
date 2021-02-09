@@ -110,13 +110,19 @@ LISTA DE PRODUCTOS
 						}
 					}
 
-					$base=($rutas[1]-1)*12; //Para traer un inicio
+					// Esto Aplica cuando ya da clic en el boton de la página 2 en adelante por ejemplo
+					// http://localhost/frontend/desarrollo-web[0]/2[1]
+					// base=(rutas[1] que es igual a = 2-1)*12=12 y mostrara de la pagina 
+						//13,14,15,16,17,18,19,20,21,22,23,24
+				    //tope=1, 2, 3,  4,5,  6, 7, 8, 9,10,11,12
+					$base=($rutas[1]-1)*12; //Para traer un inicio o un bloque dinámico de productos con un tope de 12 elementos
 			    	$tope=12; //Para la paginacion termina en 12 [muestra solo 12 registros]
 			    	//de 0 a 12 0 de 13-24...
-			    	// $base puede ser inicio
-			    	// $tope puede ser fin
+			    	// $base puede ser inicio del rango hasta el fin
+			    	// $tope es el rango de registros
 				}else{
-					$rutas[1]=1;
+					// Esto Aplica cuando ya da clic en el boton de la página 1
+					$rutas[1]=1;//Url con valor 1
 					$base=0; //Para la paginacion inicia en 0
 			    	$tope=12; //Para la paginacion termina en 12 [muestra solo 12 registros]
 			    	$modo="DESC";//Si no estoy trabajando con paginacion ponlo por defecto DESC
@@ -377,19 +383,23 @@ LISTA DE PRODUCTOS
 			  $pagProductos= ceil(count($listaProductos)/12);//El total de productos entre 12; ceil para redondear
 			  //var_dump($pagProductos); //
 
-			/*----------  BOTONES DE LAS 4 PAGINAS Y ULTIMA PAGINA  ----------*/
-			
+			/*----------  BOTONES DE LAS 4 PRIMERAS PAGINAS Y ULTIMA PAGINA  ----------*/
+			   // Botones 1,2,3,4...24 >
 			  //Si necesito mas de 4 paginas o botones de navegacion
 			  if($pagProductos>4){
 
+			  	// Si $rutas[1]==1 o sea que va a ser de productos de 0 a 12 o mejor dicho si http://localhost/frontend/desarrollo-web[0]/1[1]
 			  	if($rutas[1]==1){
 				  	echo '<ul class="pagination">';
 				  		//Quiero que me muestre solo 4 botones de navegacion
 				  		for ($i=1; $i <= 4; $i++) { 
+				  			// rutas[0]=pagina donde me encuentro
+				  			//$i=numero de pagina a azanzar
 				  			echo' <li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
 
 				  		}
-
+				  		// pagProductos=fin del producto o total
+				  		// por ser primera pagina, el href="'.$url.$rutas[0].'/2"> manda a la siguiente pagina o sea la 2
 				  		echo '<li class="disabled"><a>...</a></li>
 				  		      <li id="item'.$pagProductos.'"><a href="'.$url.$rutas[0].'/'.$pagProductos.'">'.$pagProductos.'</a></li>
 				  		      <li><a href="'.$url.$rutas[0].'/2"> <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>';
@@ -398,18 +408,24 @@ LISTA DE PRODUCTOS
 				  }	
 
 				
-				  /*----------  BOTONES DE LA  MITAD HACIA ABAJO O el grupo de 0 a 12 paginas ----------*/
+				  /*----------  BOTONES DE LA PRIMERA MITAD DE BOTONES HACIA ABAJO (BOLOQUES DE 1 A 12)----------*/
+				  // En este caso de 1 hasta el 12 (Considerando un total de total de paginas de 24)
+				  // Si rutas[1] es diferente ultima pagina o $pagProductos=24
+				  // Si rutas[1] es diferente de uno (si es difente pq este es pagina 2)
+				  // Si rutas[1] es menor al  $pagProductos(24)/2=12
+				  // Si rutas[1] es menor a $pagProductos(24)-3=21;
 				  else if($rutas[1] != $pagProductos && 
 				  		   $rutas[1] !=1 &&
 				  		   $rutas[1] < ($pagProductos/2) &&
 				  		   $rutas[1] < ($pagProductos-3)
 				  		){
-				  		$numPaginaActual =$rutas[1];//Pagina actual
+				  		// Esto definitivamente tiene que ser mayor a 1 pq es la pagina 2 en adelante
+				  		$numPaginaActual =$rutas[1];//Pagina actual para poder usarla e ir a la pagina anterior
 
 				  		echo '<ul class="pagination">
 				  		 <li><a href="'.$url.$rutas[0].'/'.($numPaginaActual-1).'"> <i class="fa fa-angle-left" aria-hidden="true"></i></a></li>';
 
-				  		//Quiero que me muestre solo 4 botones de navegacion
+				  		//Ejemplo for($i=$numPaginaActual tiene valor de 8; $paginaActual<=($numPaginaActual+3) igual a 8,9,10,11;  $i=8,9,10,11)
 				  		for ($i=$numPaginaActual; $i <= ($numPaginaActual+3); $i++) { 
 				  			echo' <li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
 
@@ -422,7 +438,12 @@ LISTA DE PRODUCTOS
 				 	 	echo'</ul';
 				  }
 
-				  /*----------  BOTONES DE 12 EN ADELANTE a 20----------*/
+
+				  /*----------  BOTONES DE LA PRIMERA MITAD DE BOTONES HACIA ARRIBA (BOLOQUES DE 12 A 24)----------*/// Si rutas[1] 
+				  //si es diferente ultima pagina o $pagProductos=24
+				  // Si rutas[1] es diferente de uno (si es difente pq este es pagina 2)
+				  //Si rutas[1] es mayor o igual a $pagProductos(24)/2=12 para que incluya el bloque 12
+				  // Si rutas[1] es menor a $pagProductos(24)-3=21;
 				  else if($rutas[1] != $pagProductos && 
 				  		   $rutas[1] !=1 &&
 				  		   $rutas[1] >= ($pagProductos/2) &&
@@ -447,10 +468,10 @@ LISTA DE PRODUCTOS
 
 				  }
 				   
-				   /*----------   Botones de las siguientes 4 paginas de la pagina y la primera pagina  ----------*/
-				   
+				 /*----------  BOTONES DE LAS ULTIMAS 4 PAGINAS y LA PRIMERA PAGINA ----------*/
+				 // Botones < 1,...,21,22,23,24 >
 				  else{
-				  	$numPaginaActual =$rutas[1];//Pagina actual
+				  	$numPaginaActual =$rutas[1];//Pagina actual =24
 				  	echo '<ul class="pagination">
 				  	      <li id="item1"><a href="'.$url.$rutas[0].'/'.($numPaginaActual-1).'"> <i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
 				  	      <li id="item1"><a href="'.$url.$rutas[0].'/1">1</a></li>
